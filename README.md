@@ -1,61 +1,101 @@
-# Data Science Assessment
 
-## Getting Started
+# **Open University Learning Analytics - Student Performance Prediction**  
 
-1. **Fork this Repository**: Before starting the assessment, please fork this repository to your own GitHub account. This will allow you to submit your work later.
+## **Project Overview**  
+This project analyzes student performance using data from the **Open University Learning Analytics Dataset (OULAD)**. The objective is to predict student outcomes (`final_result`) based on **pass rates** and **weighted grades** using three different machine learning models:  
 
-2. **Clone Your Fork**: Clone your forked repository to your local machine to begin working.
+- **Random Forest Classifier**  
+- **Logistic Regression**  
+- **Linear Discriminant Analysis (LDA)**  
 
-3. **Dataset**: This assessment uses the Open University Learning Analytics Dataset (OULAD), which contains student interaction data with a Virtual Learning Environment. Sample data is provided in the `oulad_data` directory, or you can download the full dataset from [the official source](https://analyse.kmi.open.ac.uk/open-dataset/download).
+The analysis involves **data preparation, model training, evaluation, and visualization** to understand key factors influencing student success.  
 
-4. **Setup**: Run the following commands to set up your environment if you not sure how to get the training dat:
+---
+
+## **Dataset Description**  
+The dataset consists of multiple CSV files related to student engagement, assessments, and demographics. The key files used in this project include:  
+
+- `studentInfo.csv` – Contains student demographic data.  
+- `studentAssessment.csv` – Records student scores on assessments.  
+- `studentVle.csv` – Logs student interactions with the Virtual Learning Environment (VLE).  
+- `assessments.csv` – Provides assessment details.  
+
+### **Key Features Used for Prediction**  
+1. **Pass Rate (`pass_rate`)** – The percentage of completed assessments that a student has passed.  
+2. **Weighted Grade (`weighted_grade`)** – The overall performance score adjusted by assessment weight.  
+3. **Final Result (`final_result`)** – The target variable with categories: `Withdrawn`, `Fail`, `Pass`, `Distinction`.  
+
+---
+
+## **Data Preparation & Cleaning**  
+1. **Handling Missing Values**  
+   - Used **forward fill** to replace missing values where applicable.  
+2. **Removing Duplicates**  
+   - Eliminated duplicate records for consistency.  
+3. **Merging Relevant Datasets**  
+   - Combined `studentAssessment` with `assessments` and then merged it with `studentInfo` to create a unified dataset.  
+4. **Feature Engineering**  
+   - Mapped categorical target values to numerical labels (`0 = Withdrawn`, `1 = Fail`, `2 = Pass`, `3 = Distinction`).  
+   - Selected **pass rate** and **weighted grade** as the primary predictive features.  
+
+---
+
+## **Machine Learning Models Used**  
+
+-  **Random Forest** - Handles non-linearity well, robust to noise. Can be computationally expensive.     
+- **Logistic Regression** - Simple, interpretable, good for binary cases.Assumes linear relationships.
+- **Linear Discriminant Analysis (LDA)**-  Reduces dimensionality, effective for classification. Assumes normality of data distribution.
+
+---
+
+## **Model Evaluation**  
+The models were evaluated based on the following metrics:  
+- **Accuracy** – Overall correctness of predictions.  
+- **Precision & Recall** – Measures for identifying at-risk students.  
+- **F1-Score** – Balances precision and recall.  
+
+**Summary of Results:**  
+- **Random Forest** achieved the highest accuracy but lacked interpretability.  
+- **Logistic Regression** provided clear insights but had lower predictive power.  
+- **LDA** performed well in distinguishing student categories but required assumptions on data distribution.  
+
+---
+
+## **Key Findings & Insights**  
+### **Technical Takeaways:**  
+1. Students with **higher pass rates** and **weighted grades** are more likely to succeed.  
+2. **Random Forest** was the most accurate, while **Logistic Regression** was the most interpretable.  
+3. **LDA** effectively distinguished student categories but was sensitive to data assumptions.  
+
+### **Actionable Insights (For Educators & Admins):**  
+✔️ **Support Low-Performing Students** – Identify students with low pass rates early and offer targeted support.  
+✔️ **Optimize Course Content** – Improve engagement with students struggling in key subjects.  
+✔️ **Use Predictive Models for Early Intervention** – Flag at-risk students for additional guidance.  
+
+---
+
+## **How to Reproduce This Analysis**  
+### **Prerequisites**  
+Ensure you have the following Python libraries installed:  
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn
+```
+### **Steps to Run the Project**  
+1. Place the dataset files in the project directory.  
+2. Run the Python script to clean the data, train models, and generate results:  
    ```bash
-
-  #create the data directory
-  mkdir oulad_data
-
-   # Install required packages
-   pip install pandas numpy matplotlib seaborn scikit-learn
-   
-   # Generate sample data (if needed)
-   python create_sample_data.py
-   
+   python analysis_script.py
    ```
+3. Review the output, including accuracy scores, classification reports, and visualizations.  
 
-## Assessment Structure
+---
 
-This assessment consists of three main parts, with a total time of approximately 4-5 hours.
+## **Next Steps & Future Improvements**  
+🚀 **Feature Expansion:** Include more engagement metrics (e.g., VLE interactions) for better predictions.  
+📊 **Advanced Models:** Test gradient boosting methods (e.g., XGBoost) for performance improvements.  
+🔍 **Explainability:** Use SHAP values to enhance interpretability of model predictions.  
 
-### 1. Data Exploration (1 to 1.5 hours)
+---
 
-- **Task**: Perform data analysis (cleaning, visualizations, identifying trends).
-- **Goal**: Identify key patterns in student behavior and performance based on content type, topics, and time spent in the Virtual Learning Environment.
-- **Deliverables**: 
-  - Python notebook or script with your analysis
-  - Key visualizations highlighting important patterns
-  - Brief summary of your findings
-
-### 2. Model Proposal (1.5 to 2 hours)
-
-- **Task**: Propose a machine learning model to predict student performance or engagement.
-- **Goal**: Justify your model choice and provide a basic summary of its performance.
-- **Deliverables**:
-  - Python notebook or script implementing your model
-  - Explanation of why you chose this model (e.g., decision trees, random forest)
-  - Performance metrics (accuracy, precision, recall, etc.)
-  - Discussion of feature importance
-
-### 3. Presentation Preparation (1.5 to 2 hours)
-
-#### For the Tech Lead:
-- Provide a comprehensive README in your repository.
-- Include:
-  - A technical summary of your model and why it was chosen
-  - Key findings from your analysis (trends in content effectiveness, user engagement)
-  - Instructions for reproducing your results
-
-#### For the Non-Tech Person:
-- Provide 1-2 clear visuals (graphs like bar charts, heatmaps, etc.)
-- A basic writeup explaining:
-  - Key findings in simple terms (e.g., "Video content helps students perform better in Math")
-  - Actionable insights (e.g., "Content personalization can be done based on quiz performance")
+## **Contributors**  
+- **[Orifuna Nemusombori]** – Data Analysis, Machine Learning, Report Writing  
