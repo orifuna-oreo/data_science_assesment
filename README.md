@@ -9,7 +9,7 @@ This project analyzes student performance using data from the **Open University 
 - **Linear Discriminant Analysis (LDA)**  
 
 The analysis involves **data preparation, model training, evaluation, and visualization** to understand key factors influencing student success.  
-
+This notebook needs to be ran in a jupyter environment
 ---
 
 ## **Dataset Description**  
